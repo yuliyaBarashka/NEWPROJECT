@@ -1,0 +1,5 @@
+pandas
+pandas-stubs
+openpyxl
+pytest
+pytest-cov
