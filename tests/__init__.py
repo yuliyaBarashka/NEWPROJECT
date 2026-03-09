@@ -1,1 +1,1 @@
-from tests import test_entities   #noqa401
+from tests import test_entities  # noqa401

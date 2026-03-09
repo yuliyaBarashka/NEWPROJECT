@@ -1,5 +1,5 @@
 import json
-from typing import Dict, List
+from src.models import Category, Product
 
 
 def load_data_from_json(path: str):
