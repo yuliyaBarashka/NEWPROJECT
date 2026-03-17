@@ -33,3 +33,23 @@ def test_new_product_duplicate():
 
     assert prod.quantity == 8
     assert prod.price == 60000
+
+
+def test_str_product():
+    prod = Product("iPhone", "Телефон", 100000, 5)
+    assert str(prod) == "iPhone, 100000, руб. Остаток: 5 шт."
+
+
+def test_str_category():
+    cat = Category("Телефоны")
+    prod1 = Product("iPhone", "Телефон", 100000, 5)
+    prod2 = Product("Samsung", "Телефон", 50000, 10)
+    cat.add_product(prod1)
+    cat.add_product(prod2)
+    assert str(cat) == "Телефоны, количество продуктов: 15 шт."
+
+
+def test_add_products_sum():
+    a = Product("A", "Desc", 100, 10)
+    b = Product("B", "Desc", 200, 2)
+    assert a + b == 1400
