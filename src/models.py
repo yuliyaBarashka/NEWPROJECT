@@ -16,12 +16,19 @@ class Product:
         return self.__price
 
     @price.setter
-    def price(self, value: float):
-        if value <= 0:
+    def price(self, new_price: float):
+        if new_price <= 0:
             print("Цена не должна быть нулевая или отрицательная")
-        else:
-            self.__price = value
+            return
 
+        # если цена понижается
+        if new_price < self.__price:
+            answer = input("Вы уверены, что хотите понизить цену? (y/n): ")
+            if answer.lower() != 'y':
+                print("Изменение цены отменено")
+                return
+
+        self.__price = new_price
     @classmethod
     def new_product(cls, data: Dict, products_list: Optional[List["Product"]] = None):
         if products_list:
