@@ -1,4 +1,5 @@
 import json
+
 import pytest
 
 from src.data_loader import load_data_from_json
