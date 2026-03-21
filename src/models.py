@@ -49,8 +49,8 @@ class Product:
         return f"{self.name}, {self.__price}, руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
-        if not isinstance(other, Product):
-            return NotImplemented
+        if type(self) is not type(other):
+            raise TypeError("Нельзя складывать разные типы продуктов")
         return (self.price * self.quantity) + (other.price * other.quantity)
 
 
@@ -94,3 +94,29 @@ class Category:
             self._iter_index += 1
             return prod
         raise StopIteration
+
+
+class Smartphone(Product):
+    def __init__(self, name: str, price: float = 0.0, quantity: int = 0, model: str = "",
+                 description: str = "", efficiency: str = "", memory: int = 0, color: str = ""):
+        super().__init__(name, description, price, quantity)
+        self.model = model
+        self.efficiency = efficiency
+        self.memory = memory
+        self.color = color
+
+
+
+class LawnGrass(Product):
+    def __init__(self,
+                 name: str,
+                 price: float = 0.0,
+                 quantity: int = 0,
+                 country: str = "",
+                 germination_period: int = 0,
+                 description: str = "",
+                 color: str = ""):
+        super().__init__(name, description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.color = color
