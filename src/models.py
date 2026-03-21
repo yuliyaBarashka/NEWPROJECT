@@ -101,8 +101,15 @@ class Category:
 
 
 class Smartphone(Product):
-    def __init__(self, name: str, price: float = 0.0, quantity: int = 0, model: str = "",
-                 description: str = "", efficiency: float = 0.0, memory: int = 0, color: str = ""):
+    def __init__(self,
+                 name: str,
+                 price: float = 0.0,
+                 quantity: int = 0,
+                 model: str = "",
+                 description: str = "",
+                 efficiency: float = 0.0,
+                 memory: int = 0,
+                 color: str = ""):
         super().__init__(name, description, price, quantity)
         self.model = model
         self.efficiency = efficiency
