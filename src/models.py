@@ -29,6 +29,7 @@ class Product:
                 return
 
         self.__price = new_price
+
     @classmethod
     def new_product(cls, data: Dict, products_list: Optional[List["Product"]] = None):
         if products_list:
@@ -104,7 +105,6 @@ class Smartphone(Product):
         self.efficiency = efficiency
         self.memory = memory
         self.color = color
-
 
 
 class LawnGrass(Product):

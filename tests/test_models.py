@@ -1,5 +1,6 @@
 import pytest
-from src.models import Category, Product, Smartphone, LawnGrass
+
+from src.models import Category, LawnGrass, Product, Smartphone
 
 
 def test_add_product():
