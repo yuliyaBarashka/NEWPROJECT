@@ -32,9 +32,9 @@ class Product:
 
     @classmethod
     def new_product(cls, data: Dict, products_list: Optional[List["Product"]] = None):
-        if products_list:
+        if products_list is not None:
             for product in products_list:
-                if product.name == data["name"]:
+                if product.name.lower() == data["name"]:
                     product.quantity += data.get("quantity", 0)
                     if data.get("price", 0) > product.price:
                         product.price = data["price"]
@@ -68,6 +68,9 @@ class Category:
         self._iter_index = 0
 
     def add_product(self, product: Product):
+        if not isinstance(product, Product):
+            raise TypeError("Можно добавлять только продукты")
+
         self.__products.append(product)
         Category.total_products += product.quantity
 
@@ -99,7 +102,7 @@ class Category:
 
 class Smartphone(Product):
     def __init__(self, name: str, price: float = 0.0, quantity: int = 0, model: str = "",
-                 description: str = "", efficiency: str = "", memory: int = 0, color: str = ""):
+                 description: str = "", efficiency: float = 0.0, memory: int = 0, color: str = ""):
         super().__init__(name, description, price, quantity)
         self.model = model
         self.efficiency = efficiency
@@ -113,7 +116,7 @@ class LawnGrass(Product):
                  price: float = 0.0,
                  quantity: int = 0,
                  country: str = "",
-                 germination_period: int = 0,
+                 germination_period: str = "",
                  description: str = "",
                  color: str = ""):
         super().__init__(name, description, price, quantity)

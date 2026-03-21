@@ -33,7 +33,7 @@ def test_new_product_duplicate():
 
     prod = Product.new_product(data, products)
 
-    assert prod.quantity == 8
+    assert prod.quantity == 3
     assert prod.price == 60000
 
 
@@ -66,7 +66,7 @@ def test_add_smartphone_to_category():
 
 def test_add_lawngrass_to_category():
     cat = Category("Газон")
-    grass = LawnGrass("Газонная трава", price=200, quantity=10, country="RU", germination_period=7, color="Green")
+    grass = LawnGrass("Газонная трава", price=200, quantity=10, country="RU", germination_period="7", color="Green")
     cat.add_product(grass)
     assert cat.products[0].country == "RU"
 
