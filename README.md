@@ -1,6 +1,7 @@
  Проект: Виджет банковских операций
 ## 📌 Описание проекта
-Проект реализует систему управления продуктами и категориями.
+Проект представляет собой модель интернет магазина с использованием ООП. Реализованы классы товаров,
+категории, а также механизмы работы с данными валидации.
 
 ## 🗂 Структура проекта
 HOMEWORKE9_2/\
@@ -8,7 +9,7 @@ HOMEWORKE9_2/\
 │   ├── products.json\
 │\
 ├── src/\
-│   ├── models.py          # Классы Product, Category, LawnGrass, Smartphone\
+│   ├── models.py          # Классы Product, Category, LawnGrass, Smartphone, InitMixin, BaseProduct(ABC)\
 │   ├── data_loader.py        # Выгрузка Json\
 │   └── __init __.py\
 │\
@@ -16,7 +17,7 @@ HOMEWORKE9_2/\
 │   ├── test_models.py       # Test for models.py\
 │   └── test_data_loader.py       # Test for data_loader.py\
 │\
-├── htmlcov/              # HTML-отчёт покрытия тестами\
+├── HTMLres/              # HTML-отчёт покрытия тестами\
 │   └── index.html\
 │\
 ├── pyproject.toml\
@@ -61,6 +62,10 @@ category = Category(\
    description="Gaming laptop",\
    products=[],\
 )\
+
+#### Добавление товара в категорию:
+category.add_product(product)
+
 ## Smartphone
 Класс описывает смартфон  
 
@@ -77,17 +82,17 @@ category = Category(\
 ## LawnGrass
 Класс описывает газон  
 
-Атрибуты:
-- name
-- price
-- quantity
-- country
-- germination_period
-- description
-- color
+## BaseProduct
+Абстрактный базовый класс.
 
-#### Добавление товара в категорию:
-category.add_product(product)
+Содержит:
+- __str
+- __add
+
+## InitMixin
+Выводит информацию при создании обьекта, показывает класс и переданные параметры.
+
+
 
 ## ⚙️ Установка и запуск
 ### 1️⃣ Клонирование репозитория
