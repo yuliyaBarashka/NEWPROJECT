@@ -92,4 +92,4 @@ def test_add_same_class_products():
 
 def test_mixin_output(capsys):
     Product("Test", "Desc", 100, 1)
-    assert "Создан обьект Product c gfhdvtnhfvb (), {}"
+    assert "Создан обьект Product c параметрами (), {}"

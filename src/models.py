@@ -14,7 +14,7 @@ class BaseProduct(ABC):
 
 class InitMixin:
     def __init__(self, *args, **kwargs):
-        print(f"Создан оьект {self.__class__.__name__} c gfhfvtnhfvb: {args}, {kwargs}")
+        print(f"Создан оьект {self.__class__.__name__} c параметрами: {args}, {kwargs}")
         super().__init__(*args, **kwargs)
 
 
