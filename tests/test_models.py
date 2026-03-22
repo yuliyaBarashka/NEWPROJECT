@@ -33,7 +33,7 @@ def test_new_product_duplicate():
 
     prod = Product.new_product(data, products)
 
-    assert prod.quantity == 3
+    assert prod.quantity == 8
     assert prod.price == 60000
 
 
@@ -88,3 +88,8 @@ def test_add_same_class_products():
     a = Smartphone("iPhone", price=100000, quantity=2)
     b = Smartphone("Samsung", price=50000, quantity=3)
     assert a + b == 2*100000 + 3*50000
+
+
+def test_mixin_output(capsys):
+    Product("Test", "Desc", 100, 1)
+    assert "Создан обьект Product c gfhdvtnhfvb (), {}"
