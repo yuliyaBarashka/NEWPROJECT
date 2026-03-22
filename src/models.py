@@ -1,14 +1,32 @@
+from abc import ABC, abstractmethod
 from typing import Dict, List, Optional
 
 
-class Product:
+class BaseProduct(ABC):
+    @abstractmethod
+    def __str__(self):
+        pass
+
+    @abstractmethod
+    def __add__(self, other):
+        pass
+
+
+class InitMixin:
+    def __init__(self, *args, **kwargs):
+        print(f"Создан оьект {self.__class__.__name__} c gfhfvtnhfvb: {args}, {kwargs}")
+        super().__init__(*args, **kwargs)
+
+
+class Product(InitMixin, BaseProduct):
     product_count: int = 0
 
     def __init__(self, name: str = "", description: str = "", price: float = 0.0, quantity: int = 0):
-        self.name: str = name
-        self.description: str = description
-        self.__price: float = price
-        self.quantity: int = quantity
+        super().__init__()
+        self.name = name
+        self.description = description
+        self.__price = price
+        self.quantity = quantity
         Product.product_count += 1
 
     @property
@@ -23,9 +41,12 @@ class Product:
 
         # если цена понижается
         if new_price < self.__price:
-            answer = input("Вы уверены, что хотите понизить цену? (y/n): ")
-            if answer.lower() != 'y':
-                print("Изменение цены отменено")
+            try:
+                answer = input("Вы уверены, что хотите понизить цену? (y/n): ")
+                if answer.lower() != 'y':
+                    print("Изменение цены отменено")
+                    return
+            except EOFError:
                 return
 
         self.__price = new_price
@@ -34,11 +55,12 @@ class Product:
     def new_product(cls, data: Dict, products_list: Optional[List["Product"]] = None):
         if products_list is not None:
             for product in products_list:
-                if product.name.lower() == data["name"]:
+                if product.name.lower() == data["name"].lower():
                     product.quantity += data.get("quantity", 0)
                     if data.get("price", 0) > product.price:
                         product.price = data["price"]
                     return product
+
         return cls(
             data["name"],
             data.get("description", ""),
