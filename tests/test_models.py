@@ -88,3 +88,22 @@ def test_add_same_class_products():
     a = Smartphone("iPhone", price=100000, quantity=2)
     b = Smartphone("Samsung", price=50000, quantity=3)
     assert a + b == 2*100000 + 3*50000
+
+
+def test_product_zero_quantity():
+    with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
+        Product("Товар", 1000, 0)
+
+
+def test_category_middle_price():
+    cat = Category("Смартфоны")
+    p1 = Product("iPhone", 100000, 5)
+    p2 = Product("Samsung", 80000, 3)
+    cat.add_product(p1)
+    cat.add_product(p2)
+    assert cat.middle_price() == (100000 + 80000)/2
+
+
+def test_category_middle_price_empty():
+    cat = Category("Пустая")
+    assert cat.middle_price() == 0

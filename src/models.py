@@ -5,6 +5,8 @@ class Product:
     product_count: int = 0
 
     def __init__(self, name: str = "", description: str = "", price: float = 0.0, quantity: int = 0):
+        if quantity == 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
         self.name: str = name
         self.description: str = description
         self.__price: float = price
@@ -98,6 +100,14 @@ class Category:
             self._iter_index += 1
             return prod
         raise StopIteration
+
+    def middle_price(self) -> float:
+        try:
+            total_price = sum(p.price for p in self.__products)
+            avg = total_price / len(self.__products)
+            return avg
+        except ZeroDivisionError:
+            return 0
 
 
 class Smartphone(Product):
