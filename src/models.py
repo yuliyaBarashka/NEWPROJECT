@@ -1,17 +1,32 @@
 from typing import Dict, List, Optional
 
 
+class ZeroQuantityError(Exception):
+    """Пользовательское исключение для товаров с нулевым количеством"""
+    def __init__(self, message="Товар с нулевым количеством не может быть добавлен"):
+        self.message = message
+        super().__init__(self.message)
+
+
 class Product:
     product_count: int = 0
 
     def __init__(self, name: str = "", description: str = "", price: float = 0.0, quantity: int = 0):
-        if quantity == 0:
-            raise ValueError("Товар с нулевым количеством не может быть добавлен")
-        self.name: str = name
-        self.description: str = description
-        self.__price: float = price
-        self.quantity: int = quantity
-        Product.product_count += 1
+        try:
+            if quantity == 0:
+                # Вызываем наше пользовательское исключение
+                raise ZeroQuantityError()
+            self.name: str = name
+            self.description: str = description
+            self.__price: float = price
+            self.quantity: int = quantity
+            Product.product_count += 1
+        except ZeroQuantityError as e:
+            print(f"Ошибка: {e}")
+        else:
+            print(f"Товар '{name}' успешно добавлен")
+        finally:
+            print("Обработка добавления товара завершена")
 
     @property
     def price(self) -> float:
