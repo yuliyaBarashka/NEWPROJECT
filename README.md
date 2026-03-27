@@ -1,8 +1,6 @@
  Проект: Виджет банковских операций
 ## 📌 Описание проекта
-Проект представляет собой набор функций для обработки и отображения банковских операций клиента.
-Реализована логика маскировки номеров карт и счетов, фильтрации операций по статусу и сортировки по дате.
-Проект покрыт автоматическими тестами с использованием pytest, используется Poetry для управления зависимостями.
+Проект реализует систему управления продуктами и категориями.
 
 ## 🗂 Структура проекта
 HOMEWORKE9_2/\
@@ -10,13 +8,13 @@ HOMEWORKE9_2/\
 │   ├── products.json\
 │\
 ├── src/\
-│   ├── models.py          # Классы Product и Category\
+│   ├── models.py          # Классы Product, Category, LawnGrass, Smartphone\
 │   ├── data_loader.py        # Выгрузка Json\
 │   └── __init __.py\
 │\
 ├── tests/\
-│   ├── test_mask.py       # Фикстуры pytest\
-│   └── test_widget.py       # Фикстуры pytest\
+│   ├── test_models.py       # Test for models.py\
+│   └── test_data_loader.py       # Test for data_loader.py\
 │\
 ├── htmlcov/              # HTML-отчёт покрытия тестами\
 │   └── index.html\
@@ -63,6 +61,31 @@ category = Category(\
    description="Gaming laptop",\
    products=[],\
 )\
+## Smartphone
+Класс описывает смартфон  
+
+Атрибуты:
+- name
+- price
+- quantity
+- model
+- description
+- efficiency
+- memory
+- color
+
+## LawnGrass
+Класс описывает газон  
+
+Атрибуты:
+- name
+- price
+- quantity
+- country
+- germination_period
+- description
+- color
+
 #### Добавление товара в категорию:
 category.add_product(product)
 
