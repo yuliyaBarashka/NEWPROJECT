@@ -1,6 +1,12 @@
 from typing import Dict, List, Optional
 
 
+class ZeroQuantityError(ValueError):
+    """Пользовательское исключение для товаров с нулевым количеством"""
+    def __init__(self, message="Товар с нулевым количеством не может быть добавлен"):
+        super().__init__(message)
+
+
 class Product:
     product_count: int = 0
 
